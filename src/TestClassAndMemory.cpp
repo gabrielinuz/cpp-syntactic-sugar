@@ -63,7 +63,7 @@ int main()
     unique(BaseLogger) logger = new_unique(FileLogger);
     logger->log("A log file...");
     logger->baseMethod();
-    testUniqueLogger(logger);//ESTO NO SE DEBERÍA PODER HACER, SALVO QUE USE MOVE?
+    testUniqueLogger(logger);
     
     // shared_ref<BaseLogger> slogger = new_shared(FileLogger);
     shared(BaseLogger) slogger = new_shared(FileLogger);
