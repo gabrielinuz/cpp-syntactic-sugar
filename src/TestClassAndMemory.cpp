@@ -40,14 +40,16 @@ class FileLogger extends BaseLogger
         }
 };
 
-void testUniqueLogger(unique(BaseLogger) logger)
+void testUniqueLogger(const unique(BaseLogger)& logger)
 {
     logger->log("A unique log file...");
+    logger->baseMethod();
 }
 
-void testSharedLogger(shared(BaseLogger) logger)
+void testSharedLogger(const shared(BaseLogger)& logger)
 {
     logger->log("A shared log file...");
+    logger->baseMethod();
 }
 
 int main()
@@ -61,8 +63,7 @@ int main()
     unique(BaseLogger) logger = new_unique(FileLogger);
     logger->log("A log file...");
     logger->baseMethod();
-
-    // testUniqueLogger(logger);//ESTO NO SE DEBERÍA PODER HACER
+    testUniqueLogger(logger);//ESTO NO SE DEBERÍA PODER HACER, SALVO QUE USE MOVE?
     
     // shared_ref<BaseLogger> slogger = new_shared(FileLogger);
     shared(BaseLogger) slogger = new_shared(FileLogger);

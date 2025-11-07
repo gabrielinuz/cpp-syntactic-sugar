@@ -11,7 +11,12 @@
 // === Token especial ===
 #define endline std::endl
 
+/*std::endl hace flush + \n. En bucles, esto puede ralentizar. Una alternativa para bucles:*/
+// #define newline '\n'   // solo salto, sin flush (más eficiente en bucles)
+
 // === Macros de impresión (hasta 8 argumentos) ===
+/*¿cuántas veces necesitás imprimir 9+ cosas en una sola línea en un entorno educativo? 😊
+8 es un límite razonable (y rara vez se alcanza).*/
 #define print(...)   do { PRINT_MACRO(__VA_ARGS__); } while(0)
 #define printline(...)   do { PRINTLINE_MACRO(__VA_ARGS__); } while(0)
 #define error(...)   do { ERROR_MACRO(__VA_ARGS__); } while(0)
