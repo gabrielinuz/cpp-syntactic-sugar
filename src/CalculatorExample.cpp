@@ -20,7 +20,7 @@ int main()
 {
     print("🧮 Calculadora básica", endline);
     
-    auto calc = new_shared(Suma);
+    shared(ICalculable) calc = new_shared(Suma);
     double res = calc->calculate();
     
     printline("✅ Resultado: ", res);

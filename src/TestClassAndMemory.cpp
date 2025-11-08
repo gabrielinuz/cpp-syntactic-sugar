@@ -1,7 +1,4 @@
 #include "../include/SyntacticSugar.hpp"
-#include <iostream>
-#include <string>
-#include <memory>
 
 interface IService 
 {
@@ -14,7 +11,8 @@ class TestService implements IService
         override_method(void, call)
         {
             // std::cout << "TestService Called" << std::endl;
-            print("TestService called.", endline);
+            // print("TestService called.", endline);
+            printline("TestService called.");
         }
 };
 
@@ -65,6 +63,7 @@ int main()
     logger->baseMethod();
     testUniqueLogger(logger);
     
+    // std::shared_ptr<BaseLogger> slogger = std::make_shared<FileLogger>();
     // shared_ref<BaseLogger> slogger = new_shared(FileLogger);
     shared(BaseLogger) slogger = new_shared(FileLogger);
     testSharedLogger(slogger);
