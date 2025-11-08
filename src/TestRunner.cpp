@@ -7,11 +7,11 @@ interface IRunner
 
 class HelloWorldRunner implements IRunner
 {
-public:
-    override_method(void, run)
-    {
-        printline("🌟 ¡Hola desde un runner!");
-    }
+    public:
+        override_method(void, run)
+        {
+            printline("🌟 ¡Hola desde un runner!");
+        }
 };
 
 int main()
