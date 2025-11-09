@@ -8,7 +8,6 @@ int main()
     // 1. array_of(T) → vector dinámico con acceso por índice
     // --------------------------------------------------
     printline("1. array_of(int): acceso rápido por índice");
-    // array_of(int) numbers = new_array(int);
     array_of(int) numbers;
     numbers.push_back(10);
     numbers.push_back(20);
@@ -27,7 +26,6 @@ int main()
     // 2. list_of(T) → lista doblemente enlazada (inserción eficiente)
     // --------------------------------------------------
     printline("2. list_of(string): inserción al inicio y final");
-    // list_of(string) names = new_list(string);
     list_of(string) names;
     names.push_back("Carlos");
     names.push_front("Ana");      // ✅ eficiente en lista
@@ -74,7 +72,6 @@ int main()
     // 4. set_of(T) → conjunto sin duplicados
     // --------------------------------------------------
     printline("4. set_of(string): nombres únicos");
-    // set_of(string) uniqueUsers = new_set(string);
     set_of(string) uniqueUsers;
     uniqueUsers.insert("admin");
     uniqueUsers.insert("user1");
@@ -114,10 +111,8 @@ int main()
     logs.push_back({"Beatriz", "login", 115});
 
     // Contar acciones por usuario
-    // dict_of(string, int) actionsByUser = new_dict(string, int);
     dict_of(string, int) actionsByUser;
     // Registrar usuarios únicos
-    // set_of(string) activeUsers = new_set(string);
     set_of(string) activeUsers;
 
     for (const auto& log : logs)

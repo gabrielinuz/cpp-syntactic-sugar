@@ -40,8 +40,9 @@ int main()
     list_of(string) names;
     names.push_back("Ana");
     names.push_front("Carlos");
-    for (const auto& name : names) 
-    {  // * para iterar
+    // for (const auto name : names) // +2 copias, +2 destructores extra
+    for (const auto& name : names) // Solo 2 constructores, 2 destructores
+    { 
         printline(" - ", name);
     }
 
