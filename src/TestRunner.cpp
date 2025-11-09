@@ -14,6 +14,11 @@ class HelloWorldRunner implements IRunner
         }
 };
 
+void executeRunner(const_ref_of(shared(IRunner)) runner) 
+{
+    runner->run();  // ✅ OK: runner es const shared_ptr<IRunner>&
+}
+
 int main()
 {
     printline("=== Sistema de Ejecución ===");
@@ -29,6 +34,9 @@ int main()
     // Polimorfismo con alias
     shared(IRunner) r = runner;
     r->run();
+
+    //Usar función para probar semántica de referencia constante:
+    executeRunner(runner);
     
     printline("✅ Todo funcionó correctamente.");
     return 0;

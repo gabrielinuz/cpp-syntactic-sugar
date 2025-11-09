@@ -21,7 +21,9 @@ int main()
     names.push_back("Ana");
     names.push_front("Carlos");
     // for (const auto name : names) // +2 copias, +2 destructores extra
-    for (const auto& name : names) // Solo 2 constructores, 2 destructores
+    // for (const auto& name : names) // Solo 2 constructores, 2 destructores
+    // for (string name : names) // aunque sea menos eficiente resulta más didáctico
+    for (const_ref_of(string) name : names) // aunque sea menos eficiente resulta más didáctico
     { 
         printline(" - ", name);
     }

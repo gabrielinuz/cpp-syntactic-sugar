@@ -114,6 +114,22 @@ template<typename T> using set_ref = std::unordered_set<T>;
 #define dict_of(K, V) dict_ref<K, V>
 #define set_of(T) set_ref<T>
 
+//--------------------------------------START OF REFERENCE MACROS---------------------------------------//
+// Uso: const_ref_of(string) name;  → const string& name;
+//      const_ref_of(auto) x = vec[0]; → const auto& x = vec[0];
+#define const_ref_of(T) const T&
+#define ref_of(T) T&
+#define const_of(T) const T
+
+// Expresividad semántica para referencias y const
+#define const_ref_of(T) const T&
+#define ref_of(T) T&
+#define const_of(T) const T
+// Opcional: para punteros (usar con cuidado)
+// #define ptr_of(T) T*
+// #define const_ptr_of(T) const T*
+//--------------------------------------END OF REFERENCE MACROS---------------------------------------//
+
 //--------------------------------------END MEMORY & CONTAINERS---------------------------------------//
 
 #endif // SYNTACTIC_SUGAR_HPP
