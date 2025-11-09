@@ -1,27 +1,7 @@
 #include "../include/SyntacticSugar.hpp"
 
-interface IRunner
-{
-    abstract_method(void, run);
-};
-
-class HelloWorldRunner implements IRunner
-{
-    public:
-        override_method(void, run) 
-        {
-            printline("🌟 ¡Hola desde un runner!");
-        }
-};
-
 int main() 
 {
-    printline("=== Sistema de Ejecución ===");
-
-    // Smart pointers con ->
-    shared(IRunner) runner = new_shared(HelloWorldRunner);
-    runner->run();  // ✅
-
     // Contenedores con . 
     array_of(int) numbers;
     numbers.push_back(10);
@@ -46,11 +26,5 @@ int main()
         printline(" - ", name);
     }
 
-    // Input
-    string nombre;
-    input("Nombre: ", nombre);
-    printline("Hola, ", nombre);
-
-    printline("✅ Todo funcionó con -> en todo.");
     return 0;
 }
