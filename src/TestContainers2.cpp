@@ -46,7 +46,7 @@ int main()
     printline("3. dict_of(string, int): conteo de ocurrencias");
     dict_of(string, int) wordCount;
 
-    vector<string> words = {"hola", "mundo", "hola", "cpp", "mundo", "hola"};
+    array_of(string) words = {"hola", "mundo", "hola", "cpp", "mundo", "hola"};
     for (const auto& word : words) 
     {
         wordCount[word]++;  // ✅ operator[] crea entrada si no existe
@@ -61,7 +61,7 @@ int main()
     // Búsqueda segura
     string query = "cpp";
     // if (wordCount.contains(query))
-    if(wordCount.find("admin") != wordCount.end()) 
+    if(wordCount.find(query) != wordCount.end()) 
     {
         printline("   • '", query, "' aparece ", wordCount.at(query), " veces");
     } 
