@@ -1,6 +1,4 @@
 #include "../include/SyntacticSugar.hpp"
-#include <iostream>
-#include <string>
 
 int main() 
 {

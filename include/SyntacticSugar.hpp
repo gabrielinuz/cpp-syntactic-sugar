@@ -1,14 +1,20 @@
-//SyntacticSugar.hpp
-#include <iostream>
-#include <memory>
-#include <utility>   // std::forward
-#include <string>    // para std::string (muy usada en input/print)
-
+// SyntacticSugar.hpp
+// ✅ Todo con -> | C++11+ compatible | Educación realista
 #ifndef SYNTACTIC_SUGAR_HPP
 #define SYNTACTIC_SUGAR_HPP
 
-//--------------------------------------START OF IO SECTION---------------------------------------//
-// === Token especial ===
+#include <iostream>
+#include <memory>
+#include <utility>
+#include <string>
+#include <vector>
+#include <list>
+#include <unordered_map>
+#include <unordered_set>
+
+using namespace std; //aunque no es conveniente, no tenenmos que escribir std::
+//--------------------------------------IO SECTION---------------------------------------//
+// === Token especial para salto de línea ===
 #define endline std::endl
 
 /*std::endl hace flush + \n. En bucles, esto puede ralentizar. Una alternativa para bucles:*/
@@ -71,61 +77,43 @@
 #define INPUT_6(a,b,c,d,e,f)           std::cout << a; std::cin >> b; std::cout << c; std::cin >> d; std::cout << e; std::cin >> f
 #define INPUT_7(a,b,c,d,e,f,g)         std::cout << a; std::cin >> b; std::cout << c; std::cin >> d; std::cout << e; std::cin >> f; std::cout << g
 #define INPUT_8(a,b,c,d,e,f,g,h)       std::cout << a; std::cin >> b; std::cout << c; std::cin >> d; std::cout << e; std::cin >> f; std::cout << g; std::cin >> h
+//--------------------------------------END IO---------------------------------------//
 
-//--------------------------------------END OF IO SECTION---------------------------------------//
-//--------------------------------------START OF CLASS SECTION---------------------------------------//
+//--------------------------------------CLASS SECTION---------------------------------------//
 #define interface struct
-#define abstract_class class // Opcional: para clases abstractas (no instanciables)
+#define abstract_class class
 #define implements : public
 #define extends : public
 
-// === Métodos concretos (no virtuales, no overrides) ===
-#define concrete_method(ret_type, name, ...) \
-    ret_type name(__VA_ARGS__)
+#define concrete_method(ret, name, ...) ret name(__VA_ARGS__)
+#define override_method(ret, name, ...) ret name(__VA_ARGS__) override
+#define virtual_method(ret, name, ...) virtual ret name(__VA_ARGS__)
+#define abstract_method(ret, name, ...) virtual ret name(__VA_ARGS__) = 0
+//--------------------------------------END CLASS---------------------------------------//
 
-// === Métodos que sobreescriben (deben tener 'override') ===
-#define override_method(ret_type, name, ...) \
-    ret_type name(__VA_ARGS__) override
-
-// === Métodos virtuales concretos (raro, pero necesario a veces) ===
-#define virtual_method(ret_type, name, ...) \
-    virtual ret_type name(__VA_ARGS__)
-
-// Para métodos abstractos SIN "= 0" (requiere paréntesis)
-#define abstract_method(ret_type, name, ...) \
-    virtual ret_type name(__VA_ARGS__) = 0
-
-// Ejemplo de uso:
-//   concrete_method(int, size);               → int size();
-//   override_method(void, log, std::string);  → void log(std::string) override;
-//   virtual_method(bool, isValid);            → virtual bool isValid();
-//   abstract_method(bool, isValid);            → virtual bool isValid() = 0;
-
-//--------------------------------------END OF CLASS SECTION---------------------------------------//
-//--------------------------------------START OF MEMORY SECTION---------------------------------------//
-// Referencias gestionadas (OOP-style) para aplicar polimorfismo.
+//--------------------------------------MEMORY & CONTAINERS---------------------------------------//
+// Smart pointers
 template<typename T> using shared_ref = std::shared_ptr<T>;
-#define shared(T) shared_ref<T>
 template<typename T> using unique_ref = std::unique_ptr<T>;
+
+#define shared(T) shared_ref<T>
 #define unique(T) unique_ref<T>
 
-//Para crear shared_ptr:
-template<typename T, typename... Args>
-auto create_shared(Args&&... args) {
-    return std::make_shared<T>(std::forward<Args>(args)...);
-}
+// Creación
+#define new_shared(T, ...) std::make_shared<T>(__VA_ARGS__)
+#define new_unique(T, ...) std::make_unique<T>(__VA_ARGS__)
 
-// Opcional: versión con 'new_' para evitar conflicto con palabra reservada
-#define new_shared(T, ...) create_shared<T>(__VA_ARGS__)
+// Contenedores: ¡directamente a contenedores STL!
+template<typename T> using array_ref = std::vector<T>;
+template<typename T> using list_ref = std::list<T>;
+template<typename K, typename V> using dict_ref = std::unordered_map<K, V>;
+template<typename T> using set_ref = std::unordered_set<T>;
 
-//Para crear unique_ptr:
-template<typename T, typename... Args>
-auto create_unique(Args&&... args) {
-    return std::make_unique<T>(std::forward<Args>(args)...);
-}
+#define array_of(T) array_ref<T>
+#define list_of(T) list_ref<T>
+#define dict_of(K, V) dict_ref<K, V>
+#define set_of(T) set_ref<T>
 
-// Opcional: versión con 'new_' para evitar conflicto con palabra reservada
-#define new_unique(T, ...) create_unique<T>(__VA_ARGS__)
-//--------------------------------------END OF MEMORY SECTION---------------------------------------//
+//--------------------------------------END MEMORY & CONTAINERS---------------------------------------//
 
 #endif // SYNTACTIC_SUGAR_HPP

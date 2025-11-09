@@ -22,7 +22,7 @@ int main()
     auto runner = new_shared(HelloWorldRunner);
     
     // Input simple
-    std::string nombre;
+    string nombre;
     input("Ingrese su nombre: ", nombre);
     printline("Hola, ", nombre, " 👋");
     
