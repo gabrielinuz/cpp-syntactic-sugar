@@ -38,13 +38,15 @@ class FileLogger extends BaseLogger
         }
 };
 
-void testUniqueLogger(const unique(BaseLogger)& logger)
+// void testUniqueLogger(const unique(BaseLogger)& logger)
+void testUniqueLogger(const_ref_of(unique(BaseLogger)) logger)
 {
     logger->log("A unique log file...");
     logger->baseMethod();
 }
 
-void testSharedLogger(const shared(BaseLogger)& logger)
+// void testSharedLogger(const shared(BaseLogger)& logger)
+void testSharedLogger(const_ref_of(shared(BaseLogger)) logger)
 {
     logger->log("A shared log file...");
     logger->baseMethod();
