@@ -20,7 +20,8 @@ class TestService implements IService
 abstract_class BaseLogger
 {
     public:
-        abstract_method(void, log, const std::string& msg);
+        // abstract_method(void, log, const std::string& msg);
+        abstract_method(void, log, const_ref_of(string) msg);
         concrete_method(void, baseMethod)
         {
             // std::cout << "Base method called." << std::endl;
@@ -31,7 +32,8 @@ abstract_class BaseLogger
 class FileLogger extends BaseLogger 
 {
     public:
-        override_method(void, log, const std::string& msg)
+        // override_method(void, log, const std::string& msg)
+        override_method(void, log, const_ref_of(string) msg)
         {
             // std::cout << "[FILE] " << msg << std::endl;
             printline("[FILE] ", msg);
